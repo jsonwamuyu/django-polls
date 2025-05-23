@@ -6,3 +6,6 @@ def index(request):
 
 def login(request):
     return HttpResponse("Login page")
+
+def signup(request):
+    return HttpResponse('Create your account.g')
