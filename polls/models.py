@@ -22,3 +22,26 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
+
+class Musician(models.Model):
+    SHIRT_SIZES = {
+        "S": "Small",
+        "M":"Medium",
+        "L":"Large"
+    }
+    fullname= models.CharField(max_length=50)
+    instrument = models.CharField(max_length=100)
+    shirt_size = models.CharField(max_length=1,choices=SHIRT_SIZES)
+
+    # Given a model instance, the display value for a field with choices can
+    # be accessed using the get_FOO_display() method. For example:
+    # e.g p = Musician('Jeff', 'Violin', 'L)
+    # p.save()
+    # p.shirt_size // 'L'
+    # p.get_shirt_size_display() // will display the value -> 'Large'
+
+class Album(models.Model):
+    artist = models.ForeignKey(Musician, on_delete=models.CASCADE)
+    album_name = models.CharField(max_length=200)
+    release_date = models.DateTimeField()
+    ratings = models.IntegerField()
