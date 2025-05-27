@@ -13,6 +13,11 @@
             font:1rem;line-height:1.66;
         },
         h3{line-height:1.2; font-weight:700; font:2.5rem}
+        .message_info{
+            font-weight:700;
+            font-size:2rem;
+            color:grey;
+        }
     </style>
 </head>
 <body>
@@ -20,11 +25,11 @@
     {% if latest_question_list %}
     <ul>
         {% for question in latest_question_list %}
-            <li><a href="/polls/{{question.id}}/">{{question.question_text}}</a></li>
+            <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
         {% endfor %}
     </ul>
     {% else %}
-        <h6 class>Sorry there's no questions to vote.</h6>
+        <h6 class="message_info">Sorry there's no questions to vote.</h6>
         <p>Create a question.</p>
     {% endif %}
 </body>

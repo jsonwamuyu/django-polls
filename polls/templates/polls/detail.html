@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="question-wrapper">
+
+<!--        Vote for the question-->
+        <form action="{% url 'polls:vote' question.id%}" method="post">
+            {%csrf_token%}
+            <fieldset style=" margin-bottom:1rem; padding:0.5rem;">
+                <legend><h4>{{question.question_text}}</h4></legend>
+                {% if error_message %}
+                    <p><strong>{{error_message}}</strong></p>
+                {% endif %}
+<!--                loop through the question choices-->
+                {% for choice in question.choice_set.all %}
+                    <input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{choice.id}}"/>
+                {% endfor %}
+            </fieldset>
+            <input type="submit" value="Vote Now" />
+        </form>
+    </div>
+</body>
+</html>
