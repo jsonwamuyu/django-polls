@@ -3,22 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style type="text/stylesheet">
-        *{
-        margin:0px;
-        padding:0px;
-        box-sizing:
-        }
-        body{
-            font:1rem;line-height:1.66;
-        },
-        h3{line-height:1.2; font-weight:700; font:2.5rem}
-        .message_info{
-            font-weight:700;
-            font-size:2rem;
-            color:grey;
-        }
-    </style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
 </head>
 <body>
     <h3>Welcome to Wananchi polling station</h3>
