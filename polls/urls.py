@@ -1,6 +1,7 @@
 from django.urls import path
 
 from . import views
+from .views import QuestionListAPIView, QuestionDetailAPIView
 
 app_name = 'polls' # This is required for namespacing
 
@@ -12,5 +13,9 @@ urlpatterns = [
     # ex: /polls/5/results/
     path("<int:question_id>/results/", views.results, name='results'),
     # ex: /polls/5/vote
-    path("<int:question_id>/vote/", views.vote, name='vote')
+    path("<int:question_id>/vote/", views.vote, name='vote'),
+
+    # Register DRFs API endpoints
+    path("api/questions/", QuestionListAPIView.as_view(), name="question-list"),
+    path("api/questions/<int:pk>/", QuestionDetailAPIView.as_view(), name="question-detail")
 ]
