@@ -8,10 +8,6 @@ from django.urls import reverse
 
 from django.http import Http404
 
-# import DRFs
-from rest_framework import generics
-from .serializers import QuestionSerializer
-
 
 def index(request):
     """Display latest 5 polls questions by publication date"""
@@ -50,16 +46,3 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice
         # if a user hits the BACK button.
         return HttpResponseRedirect(reverse("polls:results", args=(question_id,)))
-
-
-    # DRFs and Serializers
-class QuestionListAPIView(generics.ListCreateAPIView):
-    queryset = Question.objects.all()
-    serializer_class = QuestionSerializer
-
-
-class QuestionDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Question.objects.all()
-    serializer_class = QuestionSerializer
-
-
