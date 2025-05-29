@@ -2,6 +2,7 @@ from django.db.models import F
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 
+from polls.forms import ContactMeForm
 from polls.models import Question, Choice
 from django.template import loader
 from django.urls import reverse
@@ -46,3 +47,14 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice
         # if a user hits the BACK button.
         return HttpResponseRedirect(reverse("polls:results", args=(question_id,)))
+
+# Contact me form
+def contact_me_view(request):
+    form = ContactMeForm()
+    if request.method == "POST":
+        form = ContactMeForm(request.POST)
+        if form.is_valid():
+            # Process form.cleaned_data
+            print(form.cleaned_data)
+            return render(request, 'polls/thanks.html')
+    return render(request, 'polls/contactme.html', {'form':form})

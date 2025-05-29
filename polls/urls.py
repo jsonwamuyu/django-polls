@@ -16,6 +16,8 @@ urlpatterns = [
     # ex: /polls/5/vote
     path("<int:question_id>/vote/", views.vote, name='vote'),
 
+    path("contact-me/", views.contact_me_view, name='contact-me'),
+
     # Register DRFs API endpoints
     path("api/questions/", QuestionListCreateAPIView.as_view(), name="question-list"),
     path("api/questions/<int:pk>/", QuestionDetailAPIView.as_view(), name="question-detail"),
