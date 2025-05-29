@@ -6,11 +6,13 @@ from .models import Question, Choice
 
     # DRFs and Serializers
 class QuestionListCreateAPIView(generics.ListCreateAPIView):
+    # Will list(Get) and Create(Post)
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
 
 
 class QuestionDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    # Will Get Retrieve(Get) Update(Put) and Destroy(Delete) and object using id
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
 
